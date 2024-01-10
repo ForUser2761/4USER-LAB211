@@ -1,7 +1,8 @@
-package data_layer.hotel_dao;
+package data_layer;
 
-public interface IHotelDao<Hotel> {
+public interface IHotelDAO<T> {
     void loadDataFromFile() throws Exception ; 
 
     void writeToFile() throws Exception;
+
 }

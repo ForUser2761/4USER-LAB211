@@ -17,7 +17,8 @@ public class Hotel {
     }
 
     // Constructor
-    public Hotel(String id, String name, int room_available, String address, String phone, int rating) {
+    public Hotel(String id, String name, int room_available,
+            String address, String phone, int rating) {
         this.id = id;
         this.name = name;
         this.room_available = room_available;

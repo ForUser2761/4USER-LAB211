@@ -1,5 +1,10 @@
 package application.ui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import application.ui.implement.Menu;
 import application.validate.Validate;
 import business_layer.config.CommonConfig;
@@ -114,6 +119,67 @@ public class HotelUI {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Searches for a hotel by its ID.
+     */
+    public void searchByHotelId() {
+        String id = Validate.getString("Enter hotel ID: ",
+                "Invalid ID",
+                CommonConfig.REGEX_STRING);
+        Hotel hotel = new Hotel();
+        hotel.setId(id);
+        List<Hotel> listFindById = service.search(hotel, "id");
+        if (listFindById.isEmpty()) {
+            System.out.println("Not found !!");
+        } else {
+            List<Hotel> listSort = new ArrayList<>(listFindById); // Copy listFindByName to a new list
+            // Sort the list by ID
+            Collections.sort(listSort, new Comparator<Hotel>() {
+                @Override
+                public int compare(Hotel hotel1, Hotel hotel2) {
+                    return hotel2.getId().compareTo(hotel1.getId());
+                }
+            });
+
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(CommonConfig.FORMAT_STRING_HOTEL + "\n",
+                    "Hotel_id", "Hotel_name", "Available", "Phone", "Rating", "Address");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------------------------------------------------");
+            for (Hotel hotel2 : listSort) {
+                System.out.println(hotel2);
+            }
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+
+    public void searchByHotelName() {
+        String name = Validate.getString("Enter hotel name: ",
+                "Invalid name",
+                CommonConfig.REGEX_STRING);
+
+        Hotel hotel = new Hotel();
+        hotel.setName(name);
+        List<Hotel> listFindByName = service.search(hotel, "name");
+        if (listFindByName.isEmpty()) {
+            System.out.println("Not found !!");
+        } else {
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(CommonConfig.FORMAT_STRING_HOTEL + "\n",
+                    "Hotel_id", "Hotel_name", "Available", "Phone", "Rating", "Address");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------------------------------------------------");
+            for (Hotel hotel2 : listFindByName) {
+                System.out.println(hotel2);
+            }
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
 

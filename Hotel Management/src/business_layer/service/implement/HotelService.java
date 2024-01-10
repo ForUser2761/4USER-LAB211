@@ -1,9 +1,12 @@
 package business_layer.service.implement;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import business_layer.entity.Hotel;
 import business_layer.service.IService;
-import data_layer.hotel_dao.HotelDAO;
+import data_layer.implement.HotelDAO;
 
 /**
  * The HotelService class implements the IService interface and provides
@@ -59,9 +62,21 @@ public class HotelService implements IService<Hotel> {
      * This method is not implemented.
      */
     @Override
-    public void search() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+    public List<Hotel> search(Hotel hotel, String properties) {
+        List<Hotel> listFound;
+        //tùy theo thuộc tính muốn search là gì mà chuyển tới trường hợp đó
+        switch (properties) {
+            case "id":
+                listFound = hotelDAO.findById(hotel.getId());
+                break;
+            case "name":
+                listFound = hotelDAO.findByName(hotel.getName());
+                break;
+            default:
+                listFound = new ArrayList<>();
+                break;
+        }
+        return listFound;
     }
 
     /**
@@ -108,7 +123,7 @@ public class HotelService implements IService<Hotel> {
         if (hotelInList == null) {
             throw new Exception("Not Found !!");
         }else {
-            hotelDAO.delete(hotel);
+            hotelDAO.delete(hotelInList);
         }
     }
 
@@ -119,9 +134,20 @@ public class HotelService implements IService<Hotel> {
     public void printAll() {
         hotelDAO.loadDataFromFile();
         List<Hotel> hotels = hotelDAO.getHotelList(); // Get data from HotelDAO and assign it to ArrayList
-        for (Hotel hotel : hotels) {
+        List<Hotel> newListFindById = new ArrayList<>(hotels); // Copy listFindByName to a new list
+        // Sort the list by name
+        
+        // Sort the list by ID
+        Collections.sort(newListFindById, new Comparator<Hotel>() {
+            @Override
+            public int compare(Hotel hotel1, Hotel hotel2) {
+                return hotel2.getName().compareTo(hotel1.getName());
+            }
+        });        
+        for (Hotel hotel : newListFindById) {
             System.out.println(hotel); // Print each hotel in the ArrayList
         }
     }
+
 
 }

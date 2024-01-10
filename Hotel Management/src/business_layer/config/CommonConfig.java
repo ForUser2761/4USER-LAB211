@@ -31,6 +31,11 @@ public class CommonConfig {
     public static final String REGEX_YN = "[YyNn]";
 
     /**
+     * A regular expression pattern that matches any string.
+     */
+    public static final String REGEX_STRING = ".+";
+
+    /**
      * The format string for displaying hotel information.
      */
     public static final String FORMAT_STRING_HOTEL = "%-10s | %-20s | %-10s | %-10s | %-10s | %s";

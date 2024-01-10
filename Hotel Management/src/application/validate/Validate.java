@@ -3,6 +3,7 @@ package application.validate;
 import java.util.Scanner;
 
 public class Validate {
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static int getInteger(String message, String error, int min, int max) {
@@ -10,15 +11,12 @@ public class Validate {
             try {
                 System.out.print(message);
                 String input = scanner.nextLine();
-                if (input.isEmpty()) {
-                    System.err.println("KhÔng được để trống");
+
+                int number = Integer.parseInt(input);
+                if (number >= min && number <= max) {
+                    return number;
                 } else {
-                    int number = Integer.parseInt(input);
-                    if (number >= min && number <= max) {
-                        return number;
-                    } else {
-                        System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
-                    }
+                    System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
                 }
             } catch (Exception e) {
                 System.err.println(error);
@@ -31,16 +29,14 @@ public class Validate {
             try {
                 System.out.print(message);
                 String input = scanner.nextLine();
-                if (input.isEmpty()) {
-                    System.err.println("KhÔng được để trống");
+
+                double number = Double.parseDouble(input);
+                if (number >= min && number <= max) {
+                    return number;
                 } else {
-                    double number = Double.parseDouble(input);
-                    if (number >= min && number <= max) {
-                        return number;
-                    } else {
-                        System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
-                    }
+                    System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
                 }
+
             } catch (Exception e) {
                 System.err.println(error);
             }
@@ -52,19 +48,17 @@ public class Validate {
             try {
                 System.out.print(message);
                 String input = scanner.nextLine();
-                if (input.isEmpty()) {
-                    System.err.println("KhÔng được để trống");
+
+                float number = Float.parseFloat(input);
+                if (number >= min && number <= max) {
+                    return number;
                 } else {
-                    float number = Float.parseFloat(input);
-                    if (number >= min && number <= max) {
-                        return number;
-                    } else {
-                        System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
-                    }
+                    System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
                 }
             } catch (Exception e) {
                 System.err.println(error);
             }
+
         }
     }
 
@@ -72,16 +66,12 @@ public class Validate {
         while (true) {
             System.out.print(message);
             String input = scanner.nextLine();
-            if (input.isEmpty()) {
-                System.out.println("Input cannot be empty !!");
+
+            if (input.matches(regex)) {
+                return input;
             } else {
-                if (input.matches(regex)) {
-                    return input;
-                } else {
-                    System.out.println(error);
-                }
+                System.out.println(error);
             }
         }
     }
 }
-

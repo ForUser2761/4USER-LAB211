@@ -2,13 +2,12 @@ package application.ui.implement;
 
 import java.util.ArrayList;
 
-import application.ui.HotelUI;
-import application.ui.IMenu;
+import application.ui.*;
 import application.validate.Validate;
-import business_layer.config.CommonConfig;
-import business_layer.entity.Hotel;
-import business_layer.service.IService;
-import business_layer.service.implement.HotelService;
+import business_layer.service.*;
+import business_layer.config.*;
+import business_layer.service.implement.*;
+import business_layer.entity.*;
 
 /**
  * Represents a menu for hotel management.
@@ -18,7 +17,8 @@ public class Menu extends ArrayList<String> implements IMenu {
     IService<Hotel> service;
 
     /**
-     * Constructs a Menu object and initializes the service with a new instance of HotelService.
+     * Constructs a Menu object and initializes the service with a new instance of
+     * HotelService.
      */
     public Menu() {
         this.service = new HotelService();
@@ -26,6 +26,7 @@ public class Menu extends ArrayList<String> implements IMenu {
 
     /**
      * Adds a menu item to the menu.
+     * 
      * @param item the menu item to be added
      */
     @Override
@@ -35,11 +36,13 @@ public class Menu extends ArrayList<String> implements IMenu {
 
     /**
      * Gets the user's choice by prompting for input.
+     * 
      * @return the user's choice as an integer
      */
     @Override
     public int getChoice() {
-        return Validate.getInteger("Enter your choice: ", "Choice must be digits", 1, 10);
+        return Validate.getInteger("Enter your choice: ",
+                "Choice must be digits", 1, 10);
     }
 
     /**
@@ -86,7 +89,7 @@ public class Menu extends ArrayList<String> implements IMenu {
                     break;
                 case 2:
                     // Code for checking existing Hotel
-                    hotelUI.checkingExistHotel();
+                    // hotelUI.checkingExistHotel();
                     break;
                 case 3:
                     // Code for updating Hotel information
@@ -102,9 +105,11 @@ public class Menu extends ArrayList<String> implements IMenu {
                     switch (searchChoice) {
                         case 1:
                             // Code for searching by Hotel_id
+                            hotelUI.searchByHotelId();
                             break;
                         case 2:
                             // Code for searching by Hotel_name
+                            hotelUI.searchByHotelName();
                             break;
                         default:
                             System.out.println("Invalid search choice");
@@ -117,8 +122,6 @@ public class Menu extends ArrayList<String> implements IMenu {
                     break;
                 case 7:
                     // Code for other options
-                    break;
-                case 8:
                     System.exit(0);
             }
         }
@@ -126,6 +129,7 @@ public class Menu extends ArrayList<String> implements IMenu {
 
     /**
      * Confirms the user's action by prompting for input.
+     * 
      * @param message the confirmation message
      * @return true if the user confirms, false otherwise
      */

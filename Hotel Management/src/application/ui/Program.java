@@ -3,9 +3,10 @@ package application.ui;
 import application.ui.implement.Menu;
 
 public class Program {
+
     /**
-     * The main method is the entry point of the program.
-     * It creates a Menu object, adds options to the menu, and processes the hotel menu.
+     * The main method is the entry point of the program. It creates a Menu
+     * object, adds options to the menu, and processes the hotel menu.
      *
      * @param args the command line arguments
      */
