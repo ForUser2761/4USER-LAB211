@@ -43,8 +43,8 @@ public class IngredientUI implements UIInterface<Ingredient> {
     public void showAll() {
         try {
             List<Ingredient> listIngredients = ingredientService.findIngredientList();
-            System.out.format("%-10s%-20s%-20s%-20s%-20s\n", "Code",
-                    "Name", "IsAvailable", "Quantity", "Price");
+            System.out.format("%-10s%-20s%-20s%-20s\n", "Code",
+                    "Name", "Quantity", "Price");
             for (Ingredient ingredient : listIngredients) {
                 System.out.println(ingredient);
             }
@@ -72,6 +72,34 @@ public class IngredientUI implements UIInterface<Ingredient> {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }        
+    }
+
+    public void updateIngredient() {
+        //Require to enter the ingredient code
+        String code = Validate.getString("Enter ingredient code: ", "Code must be not empty",
+                CommonRegex.INGREDIENT_CODE_REGEX);
+        //If a code does not exist, the notification “The ingredient does not exist”.
+        try {
+            Ingredient ingredientFoundByCode = ingredientService.getById(code);
+            if (ingredientFoundByCode == null) {
+                System.out.println("The ingredient does not exist");
+                //Otherwise, we can start inputting new information about ingredients and update.              
+            } else {
+                // // input new information
+                // Ingredient objectInput = new Ingredient();
+                // //set information of objectBeUpdated to objectInput
+                // objectInput.setCode(objectBeUpdated.getCode());
+                // objectInput.setName(objectBeUpdated.getName());
+                // objectInput.setQuantity(objectBeUpdated.getQuantity());
+                // objectInput.setPrice(objectBeUpdated.getPrice());
+
+                //input new information
+                ingredientFoundByCode.inputCanBlank();
+                ingredientService.update(ingredientFoundByCode, code);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 }

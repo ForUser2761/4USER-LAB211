@@ -65,7 +65,7 @@ public class Validate {
     public static String getString(String message, String error, String regex) {
         while (true) {
             System.out.print(message);
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             if (input.matches(regex)) {
                 return input;

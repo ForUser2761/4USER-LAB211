@@ -71,10 +71,31 @@ public class IngredientService implements IService<Ingredient> {
         throw new UnsupportedOperationException("Unimplemented method 'search'");
     }
 
-    @Override
-    public void update(Ingredient objectBeUpdated, Ingredient objectInformation) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public void update(Ingredient ingredientFoundByCode, String oldCode) throws Exception {
+        // check is duplicate code
+        boolean isDuplicateCode = false;
+        List<Ingredient> listIngredients = findIngredientList();
+        for (Ingredient ingredient : listIngredients) {
+            if (ingredient.getCode().equalsIgnoreCase(ingredientFoundByCode.getCode())
+                    && !ingredient.getCode().equalsIgnoreCase(oldCode)) {
+                isDuplicateCode = true;
+                break;
+            }
+        }
+        // if duplicate code, throw exception
+        if (isDuplicateCode) {
+            throw new Exception("The code is already exist");
+        } else {
+            Ingredient ingredientBeUpdated = getById(oldCode);
+            // update ingredient
+            // set new information for ingredient
+            ingredientBeUpdated.setCode(ingredientFoundByCode.getCode());
+            ingredientBeUpdated.setName(ingredientFoundByCode.getName());
+            ingredientBeUpdated.setQuantity(ingredientFoundByCode.getQuantity());
+            ingredientBeUpdated.setPrice(ingredientFoundByCode.getPrice());
+            // write to file
+            ingredientDAO.writeToFile();
+        }
     }
 
     /**

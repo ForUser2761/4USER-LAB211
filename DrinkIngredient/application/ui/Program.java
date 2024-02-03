@@ -10,7 +10,6 @@ public class Program {
         DispensingBeveragesMenu beveragesMenu = new DispensingBeveragesMenu();
         ManageBeverageRecipesMenu manageBeverageRecipesMenu = new ManageBeverageRecipesMenu();
         ManageIngredientsMenu manageIngredientsMenu = new ManageIngredientsMenu();
-
         while (true) {
             System.out.println("========================Coffee Machine========================");
             System.out.println("1. Manage ingredients.");

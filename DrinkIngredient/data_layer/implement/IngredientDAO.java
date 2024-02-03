@@ -34,8 +34,10 @@ public class IngredientDAO implements IGenericDAO<Ingredient> {
 
     /**
      * Loads data from a file and populates the ingredientsList.
-     * The file should be in the format of code|name|isAvailable|quantity|price per line.
-     * Each line is split into individual data fields and used to create Ingredient objects.
+     * The file should be in the format of code|name|isAvailable|quantity|price per
+     * line.
+     * Each line is split into individual data fields and used to create Ingredient
+     * objects.
      * The Ingredient objects are then added to the ingredientsList.
      * 
      * @throws Exception if there is an error reading or closing the file.
@@ -54,14 +56,12 @@ public class IngredientDAO implements IGenericDAO<Ingredient> {
                 // split data
                 String code = data[0].trim();
                 String name = data[1].trim();
-                boolean isAvailable = Boolean.parseBoolean(data[2].trim());
-                int quantity = Integer.parseInt(data[3].trim());
-                double price = Double.parseDouble(data[4].trim());
+                int quantity = Integer.parseInt(data[2].trim());
+                double price = Double.parseDouble(data[3].trim());
                 // create object
                 Ingredient ingredient = new Ingredient();
                 ingredient.setCode(code);
                 ingredient.setName(name);
-                ingredient.setIsAvailable(isAvailable);
                 ingredient.setQuantity(quantity);
                 ingredient.setPrice(price);
                 // add to list
@@ -99,8 +99,8 @@ public class IngredientDAO implements IGenericDAO<Ingredient> {
             fileWriter = new FileWriter(IGenericDAO.INGREDIENT_FILE_NAME);
             bufferedWriter = new BufferedWriter(fileWriter);
             for (Ingredient obj : ingredientsList) {
-                String line = String.format("%s | %s | %s | %s | %s",
-                        obj.getCode(), obj.getName(), obj.isIsAvailable(),
+                String line = String.format("%s | %s | %s | %s",
+                        obj.getCode(), obj.getName(),
                         obj.getQuantity(), obj.getPrice());
                 bufferedWriter.write(line);
                 bufferedWriter.newLine();
@@ -122,10 +122,12 @@ public class IngredientDAO implements IGenericDAO<Ingredient> {
     }
 
     /**
-     * Inserts an Ingredient object into the ingredientsList and writes the updated list to a file.
+     * Inserts an Ingredient object into the ingredientsList and writes the updated
+     * list to a file.
      * 
      * @param object the Ingredient object to be inserted
-     * @throws Exception if an error occurs while inserting the object or writing to the file
+     * @throws Exception if an error occurs while inserting the object or writing to
+     *                   the file
      */
     @Override
     public void insert(Ingredient object) throws Exception {

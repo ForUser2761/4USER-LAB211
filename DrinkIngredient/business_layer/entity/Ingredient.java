@@ -6,7 +6,6 @@ import application.validate.Validate;
 public class Ingredient {
     private String code;
     private String name;
-    private boolean isAvailable;
     private int quantity;
     private double price;
 
@@ -29,18 +28,6 @@ public class Ingredient {
         this.name = name;
     }
 
-    public boolean isIsAvailable() {
-        return this.isAvailable;
-    }
-
-    public boolean getIsAvailable() {
-        return this.isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
     public int getQuantity() {
         return this.quantity;
     }
@@ -59,7 +46,7 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return String.format("%-10s%-20s%-20s%-20s%-20s", code, name, isAvailable, quantity, price);
+        return String.format("%-10s%-20s%-20s%-20s", code, name, quantity, price);
     }
 
     public void input() {
@@ -67,12 +54,35 @@ public class Ingredient {
                 CommonRegex.INGREDIENT_CODE_REGEX);
         name = Validate.getString("Enter ingredient name: ", "Name must be not empty",
                 CommonRegex.STRING_REGEX);
-        isAvailable = Validate.getBoolean("Is available? (Y/N): ",
-                "Choice must be Y or N");
         quantity = (int) Validate.getDouble("Enter quantity: ",
                 "Quantity must be digits", 0, Integer.MAX_VALUE);
         price = Validate.getDouble("Enter price: ",
                 "Price must be digits", 0, Double.MAX_VALUE);
     }
+
+    public void inputCanBlank() {
+        // input ingredient
+        String codeInput = Validate.getString("Enter ingredient code: ", "Code must be not empty",
+                CommonRegex.INGREDIENT_CODE_REGEX_BLANK);
+        if (!codeInput.trim().isEmpty()) {
+            code = codeInput;
+        }
+        String nameInput = Validate.getString("Enter ingredient name: ", "Name must be not empty",
+                CommonRegex.INGREDIENT_NAME_REGEX_BLANK);
+        if (!nameInput.trim().isEmpty()) {
+            name = nameInput;
+        }
+        String quantityInput = Validate.getString("Enter quantity: ", "Quantity must be digits",
+                CommonRegex.INGREDIENT_QUANTITY_REGEX_BLANK);                
+        if (!quantityInput.isEmpty()) {
+            quantity = Integer.parseInt(quantityInput);
+        }
+        String priceInput = Validate.getString("Enter price: ", "Price must be digits",
+                CommonRegex.INGREDIENT_PRICE_REGEX_BLANK);
+        if (!priceInput.isEmpty()) {
+            price = Double.parseDouble(priceInput);
+        }
+    }
+
 
 }

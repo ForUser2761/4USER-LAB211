@@ -3,9 +3,7 @@ package application.ui.implement;
 import java.util.ArrayList;
 
 import application.ui.IMenu;
-import application.ui.UIInterface;
 import application.validate.Validate;
-import business_layer.entity.Ingredient;
 
 public class ManageIngredientsMenu extends ArrayList<String> implements IMenu {
 
@@ -57,6 +55,7 @@ public class ManageIngredientsMenu extends ArrayList<String> implements IMenu {
                     break;
                 case 2:
                     // updateIngredient();
+                    uiInterface.updateIngredient();
                     break;
                 case 3:
                     // deleteIngredient();

@@ -10,7 +10,5 @@ public interface IService<T> {
 
     List<T> search(T t, String properties);
 
-    void update(T objectBeUpdated, T objectInformation) throws Exception;
-
     void delete(T object) throws Exception;
 }
