@@ -53,6 +53,14 @@ public class IngredientUI implements UIInterface<Ingredient> {
         }
     }
 
+    /**
+     * Deletes an ingredient from the system.
+     * Prompts the user to enter the ingredient code and confirms the deletion.
+     * If confirmed, the ingredient is deleted using the ingredientService.
+     * If not confirmed, the deletion is canceled.
+     * 
+     * @throws Exception if an error occurs during the deletion process.
+     */
     @Override
     public void delete() {
         // enter code
@@ -74,6 +82,11 @@ public class IngredientUI implements UIInterface<Ingredient> {
         }        
     }
 
+    /**
+     * Updates an ingredient by entering its code and providing new information.
+     * If the ingredient code does not exist, a notification "The ingredient does not exist" is displayed.
+     * Otherwise, the user can input new information about the ingredient and update it.
+     */
     public void updateIngredient() {
         //Require to enter the ingredient code
         String code = Validate.getString("Enter ingredient code: ", "Code must be not empty",
@@ -85,14 +98,6 @@ public class IngredientUI implements UIInterface<Ingredient> {
                 System.out.println("The ingredient does not exist");
                 //Otherwise, we can start inputting new information about ingredients and update.              
             } else {
-                // // input new information
-                // Ingredient objectInput = new Ingredient();
-                // //set information of objectBeUpdated to objectInput
-                // objectInput.setCode(objectBeUpdated.getCode());
-                // objectInput.setName(objectBeUpdated.getName());
-                // objectInput.setQuantity(objectBeUpdated.getQuantity());
-                // objectInput.setPrice(objectBeUpdated.getPrice());
-
                 //input new information
                 ingredientFoundByCode.inputCanBlank();
                 ingredientService.update(ingredientFoundByCode, code);

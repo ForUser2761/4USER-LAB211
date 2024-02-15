@@ -126,4 +126,24 @@ public class IngredientService implements IService<Ingredient> {
         return ingredientDAO.getIngredientsList();
     }
 
+    /**
+     * Checks if an ingredient with the specified code exists in the system.
+     * 
+     * @param ingredientCode The code of the ingredient to check.
+     * @return true if the ingredient exists, false otherwise.
+     */
+    public boolean isExisted(String ingredientCode) {
+        try {
+            List<Ingredient> listIngredients = findIngredientList();
+            for (Ingredient ingredient : listIngredients) {
+                if (ingredient.getCode().equalsIgnoreCase(ingredientCode)) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import application.ui.IMenu;
 import application.validate.Validate;
 
-public class ManageBeverageRecipesMenu extends ArrayList<String> implements IMenu {
+public class DrinkMenu extends ArrayList<String> implements IMenu {
 
     @Override
     public void addItem(String item) {
@@ -15,9 +15,8 @@ public class ManageBeverageRecipesMenu extends ArrayList<String> implements IMen
 
     @Override
     public int getChoice() {
-        return Validate.getInteger("Enter your choice: ", "Choice must be digits", 1, 4);
+        return Validate.getInteger("Enter your choice: ", "Choice must be digits", 0, 4);
     }
-    
 
     @Override
     public void showMenu() {
@@ -38,9 +37,11 @@ public class ManageBeverageRecipesMenu extends ArrayList<String> implements IMen
         this.addItem("2.2. Update the drink information.");
         this.addItem("2.3. Delete the drink from menu.");
         this.addItem("2.4. Show menu.");
+        this.addItem("0. Back to main menu.");
     }
 
     public void processBeverageRecipes() {
+        DrinkUI drinkUI = new DrinkUI();
         addOptions();
         while (true) {
             showMenu();
@@ -48,6 +49,7 @@ public class ManageBeverageRecipesMenu extends ArrayList<String> implements IMen
             switch (choice) {
                 case 1:
                     // addBeverage();
+                    drinkUI.input();
                     break;
                 case 2:
                     // updateBeverage();
@@ -56,9 +58,9 @@ public class ManageBeverageRecipesMenu extends ArrayList<String> implements IMen
                     // deleteBeverage();
                     break;
                 case 4:
-                    // showBeverage();
+                    drinkUI.showAll();
                     break;
-                default:
+                case 0:
                     return;
             }
         }

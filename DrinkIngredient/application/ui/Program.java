@@ -1,14 +1,14 @@
 package application.ui;
 
 import application.ui.implement.DispensingBeveragesMenu;
-import application.ui.implement.ManageBeverageRecipesMenu;
+import application.ui.implement.DrinkMenu;
 import application.ui.implement.ManageIngredientsMenu;
 import application.validate.Validate;
 
 public class Program {
     public static void main(String[] args) {
         DispensingBeveragesMenu beveragesMenu = new DispensingBeveragesMenu();
-        ManageBeverageRecipesMenu manageBeverageRecipesMenu = new ManageBeverageRecipesMenu();
+        DrinkMenu manageBeverageRecipesMenu = new DrinkMenu();
         ManageIngredientsMenu manageIngredientsMenu = new ManageIngredientsMenu();
         while (true) {
             System.out.println("========================Coffee Machine========================");

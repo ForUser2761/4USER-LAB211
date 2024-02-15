@@ -10,7 +10,7 @@ public class CommonRegex {
 
     // Regex for validating y or n
     public static final String YES_NO_REGEX = "[yYnN]";
-    
+
     /**
      * Regular expression pattern for ingredient code validation.
      * Allows blank or a string starting with 'I' followed by zero or more digits.
@@ -21,7 +21,7 @@ public class CommonRegex {
      * Regular expression pattern for ingredient name validation.
      * Allows blank or any string.
      */
-    public static final String INGREDIENT_NAME_REGEX_BLANK = "^(.*|)$";   
+    public static final String INGREDIENT_NAME_REGEX_BLANK = "^(.*|)$";
 
     /**
      * Regular expression pattern for ingredient quantity validation.
@@ -34,4 +34,10 @@ public class CommonRegex {
      * Allows blank or a string of digits.
      */
     public static final String INGREDIENT_PRICE_REGEX_BLANK = "^(\\d*|)$";
+
+    /**
+     * Regular expression for drink codes.
+     * The drink code should start with 'D' followed by three digits.
+     */
+    public static final String DRINK_CODE_REGEX = "D\\d{3}";
 }
