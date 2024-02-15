@@ -67,10 +67,20 @@ public class DrinkService implements IService<Drink>{
         throw new UnsupportedOperationException("Unimplemented method 'search'");
     }
 
+    /**
+     * Deletes a Drink object from the database.
+     * 
+     * @param object The Drink object to be deleted.
+     * @throws Exception If the Drink object does not exist.
+     */
     @Override
     public void delete(Drink object) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Drink drinkFoundByCode = getById(object.getCode());
+        if (drinkFoundByCode == null) {
+            throw new Exception("Drink is not exist");
+        } else {
+            drinkDAO.delete(drinkFoundByCode);
+        }
     }
 
     

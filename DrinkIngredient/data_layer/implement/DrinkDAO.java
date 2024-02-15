@@ -143,4 +143,15 @@ public class DrinkDAO implements IGenericDAO<Drink> {
         drinkList.clear();
     }
 
+    /**
+     * Deletes a Drink object from the drinkList and writes the updated list to a file.
+     *
+     * @param object the Drink object to be deleted
+     * @throws Exception if an error occurs while deleting the object or writing to the file
+     */
+    public void delete(Drink object) throws Exception {
+        drinkList.remove(object);
+        writeToFile();
+    }
+
 }

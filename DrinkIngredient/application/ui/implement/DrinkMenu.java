@@ -56,6 +56,7 @@ public class DrinkMenu extends ArrayList<String> implements IMenu {
                     break;
                 case 3:
                     // deleteBeverage();
+                    drinkUI.delete();
                     break;
                 case 4:
                     drinkUI.showAll();
