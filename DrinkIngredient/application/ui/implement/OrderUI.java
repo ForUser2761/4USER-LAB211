@@ -53,6 +53,8 @@ public class OrderUI implements UIInterface<Order> {
             order.setQuantity(drinkQuantity);
             // add order to database
             orderService.create(order);
+            //update ingredient quantity
+            ingredientService.updateIngredientQuantity(drinkFoundByCode, drinkQuantity);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

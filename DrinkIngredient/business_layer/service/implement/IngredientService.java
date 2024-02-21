@@ -168,4 +168,22 @@ public class IngredientService implements IService<Ingredient> {
         }
     }
 
+    public void updateIngredientQuantity(Drink drinkFoundByCode, int drinkQuantity) {
+        try {
+            List<Ingredient> listIngredients = findIngredientList();
+            for (Map.Entry<String, Integer> entry : drinkFoundByCode.getListIngredients().entrySet()) {
+                String ingredientCode = entry.getKey();
+                int ingredientQuantity = entry.getValue() * drinkQuantity;
+                for (Ingredient ingredient : listIngredients) {
+                    if (ingredient.getCode().equalsIgnoreCase(ingredientCode)) {
+                        ingredient.setQuantity(ingredient.getQuantity() - ingredientQuantity);
+                    }
+                }
+            }
+            ingredientDAO.writeToFile();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }        
+    }
+
 }
