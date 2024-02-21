@@ -36,7 +36,7 @@ public class DrinkMenu extends ArrayList<String> implements IMenu {
         this.addItem("2.1. Add the drink to menu.");
         this.addItem("2.2. Update the drink information.");
         this.addItem("2.3. Delete the drink from menu.");
-        this.addItem("2.4. Show menu.");
+        this.addItem("2.4. Show all drink.");
         this.addItem("0. Back to main menu.");
     }
 
@@ -53,6 +53,7 @@ public class DrinkMenu extends ArrayList<String> implements IMenu {
                     break;
                 case 2:
                     // updateBeverage();
+                    drinkUI.updateBeverage();
                     break;
                 case 3:
                     // deleteBeverage();

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import application.ui.IMenu;
 import application.validate.Validate;
 
-public class ManageIngredientsMenu extends ArrayList<String> implements IMenu {
+public class IngredientsMenu extends ArrayList<String> implements IMenu {
 
     @Override
     public void addItem(String item) {

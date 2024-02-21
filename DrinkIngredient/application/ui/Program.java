@@ -1,15 +1,15 @@
 package application.ui;
 
-import application.ui.implement.DispensingBeveragesMenu;
+import application.ui.implement.OrderMenu;
 import application.ui.implement.DrinkMenu;
-import application.ui.implement.ManageIngredientsMenu;
+import application.ui.implement.IngredientsMenu;
 import application.validate.Validate;
 
 public class Program {
     public static void main(String[] args) {
-        DispensingBeveragesMenu beveragesMenu = new DispensingBeveragesMenu();
+        OrderMenu beveragesMenu = new OrderMenu();
         DrinkMenu manageBeverageRecipesMenu = new DrinkMenu();
-        ManageIngredientsMenu manageIngredientsMenu = new ManageIngredientsMenu();
+        IngredientsMenu manageIngredientsMenu = new IngredientsMenu();
         while (true) {
             System.out.println("========================Coffee Machine========================");
             System.out.println("1. Manage ingredients.");

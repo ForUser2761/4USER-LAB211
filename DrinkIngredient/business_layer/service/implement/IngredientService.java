@@ -1,7 +1,9 @@
 package business_layer.service.implement;
 
 import java.util.List;
+import java.util.Map;
 
+import business_layer.entity.Drink;
 import business_layer.entity.Ingredient;
 import business_layer.service.IService;
 import data_layer.implement.IngredientDAO;
@@ -138,6 +140,26 @@ public class IngredientService implements IService<Ingredient> {
             for (Ingredient ingredient : listIngredients) {
                 if (ingredient.getCode().equalsIgnoreCase(ingredientCode)) {
                     return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isOutOfStock(Drink drinkFoundByCode, int drinkQuantity) {
+        try {
+            List<Ingredient> listIngredients = findIngredientList();
+            for (Map.Entry<String, Integer> entry : drinkFoundByCode.getListIngredients().entrySet()) {
+                String ingredientCode = entry.getKey();
+                int ingredientQuantity = entry.getValue() * drinkQuantity;
+                for (Ingredient ingredient : listIngredients) {
+                    if (ingredient.getCode().equalsIgnoreCase(ingredientCode)) {
+                        if (ingredient.getQuantity() < ingredientQuantity) {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;

@@ -1,56 +1,41 @@
 package business_layer.entity;
 
-import java.util.Date;
 
 public class Order {
     private String code;
-    private Drink drink;
+    private String drinkCode;
     private int quantity;
-    private Date orderTime;
 
     public Order() {
     }
 
     public String getCode() {
-        return this.code;
+        return code;
     }
 
     public void setCode(String code) {
         this.code = code;
     }
 
-    public Drink getDrink() {
-        return this.drink;
+    public String getDrinkCode() {
+        return drinkCode;
     }
 
-    public void setDrink(Drink drink) {
-        this.drink = drink;
+    public void setDrinkCode(String drinkCode) {
+        this.drinkCode = drinkCode;
     }
 
     public int getQuantity() {
-        return this.quantity;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Date getOrderTime() {
-        return this.orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
-
     @Override
     public String toString() {
-        return "{" +
-            " code='" + getCode() + "'" +
-            ", drink='" + getDrink() + "'" +
-            ", quantity='" + getQuantity() + "'" +
-            ", orderTime='" + getOrderTime() + "'" +
-            "}";
+        return String.format("%-10s %-10s %-20s", code, drinkCode, quantity);
     }
     
 }

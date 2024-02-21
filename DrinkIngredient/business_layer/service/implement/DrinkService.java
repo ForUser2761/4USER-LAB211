@@ -83,5 +83,32 @@ public class DrinkService implements IService<Drink>{
         }
     }
 
+    public void update(Drink drinkFoundByCode, String oldCode) throws Exception {
+        // check is duplicate code
+        boolean isDuplicateCode = false;
+        List<Drink> listDrinks = findDrinksList();
+        for (Drink drink : listDrinks) {
+            if (drink.getCode().equalsIgnoreCase(drinkFoundByCode.getCode())
+                    && !drink.getCode().equalsIgnoreCase(oldCode)) {
+                isDuplicateCode = true;
+                break;
+            }
+        }
+        // if duplicate code, throw exception
+        if (isDuplicateCode) {
+            throw new Exception("The code is already exist");
+        } else {
+            Drink drinkBeUpdated = getById(oldCode);
+            // update ingredient
+            // set new information for ingredient
+            drinkBeUpdated.setCode(drinkFoundByCode.getCode());
+            drinkBeUpdated.setName(drinkFoundByCode.getName());
+            drinkBeUpdated.setListIngredients(drinkFoundByCode.getListIngredients());
+            drinkBeUpdated.setPrice(drinkFoundByCode.getPrice());
+            // write to file
+            drinkDAO.writeToFile();
+        }
+    }
+
     
 }

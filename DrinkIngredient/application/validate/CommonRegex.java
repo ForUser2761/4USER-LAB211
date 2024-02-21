@@ -40,4 +40,28 @@ public class CommonRegex {
      * The drink code should start with 'D' followed by three digits.
      */
     public static final String DRINK_CODE_REGEX = "D\\d{3}";
+
+    /**
+     * Regular expression pattern for drink code validation.
+     * Allows blank or a string starting with 'D' followed by three digits.
+     */
+    public static final String DRINK_CODE_REGEX_BLANK = "^(D\\d{3}|)$";
+
+    /**
+     * Regular expression pattern for drink name validation.
+     * Allows blank or any string.
+     */
+    public static final String DRINK_NAME_REGEX_BLANK = "^(.*|)$";
+
+    /**
+     * Regular expression pattern for drink price validation.
+     * Allows blank or a string of digits.
+     */
+    public static final String DRINK_PRICE_REGEX_BLANK = "^(\\d*|)$";
+
+    /**
+     * Regular expression pattern for positive integer validation.
+     * Allows blank or a string of digits.
+     */
+    public static final String POSITIVE_INTEGER_REGEX = "^(\\d+|)$";
 }

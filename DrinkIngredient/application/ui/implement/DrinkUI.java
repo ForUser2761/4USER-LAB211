@@ -88,4 +88,24 @@ public class DrinkUI implements UIInterface<Drink> {
             System.err.println(e.getMessage());
         }        
     }
+
+    public void updateBeverage() {
+        //require enter code
+        String code = Validate.getString("Enter drink code: ",
+                "The drink code should start with 'D' followed by three digits.",
+                CommonRegex.DRINK_CODE_REGEX);
+        //If a code does not exist, the notification “The drink does not exist”.
+        try {
+            Drink drinkFoundByCode = drinkService.getById(code);
+            if (drinkFoundByCode == null) {
+                System.out.println("The drink does not exist");
+                //Otherwise, we can start inputting new information about drinks and update.              
+            } else {
+                drinkFoundByCode.inputCanBlank();
+                drinkService.update(drinkFoundByCode, code);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }        
+    }
 }
