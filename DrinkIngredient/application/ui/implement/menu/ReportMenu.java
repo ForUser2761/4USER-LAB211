@@ -40,7 +40,7 @@ public class ReportMenu extends ArrayList<String> implements IMenu  {
         throw new UnsupportedOperationException("Unimplemented method 'clearOptions'");
     }
 
-    public void processReport() {
+    public void  processReport() {
         ReportUI reportUI = new ReportUI();
         addOptions();
         while (true) {
@@ -52,10 +52,12 @@ public class ReportMenu extends ArrayList<String> implements IMenu  {
                     reportUI.showIngredientAvailable();
                     break;
                 case 2:
-                    // showOutOfIngredients();
+                    //show out of stock drink
+                    reportUI.showOutOfStockDrink();
                     break;
                 case 3:
                     // showDispensingDrink();
+                    reportUI.showDispensingDrink();
                     break;
                 case 0:
                     return;
