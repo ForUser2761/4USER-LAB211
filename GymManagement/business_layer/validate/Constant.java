@@ -29,4 +29,14 @@ public class Constant {
      * The file name to store members' information.
      */
     public static final String MEMBER_FILE_NAME = "members.txt";
+
+    /**
+     * Equipment ID in format Exxxxxx where x is a digit or space.
+     */
+    public static final String EQUIPMENT_ID = "(E\\d{1,6}|\\s*)";
+
+    /**
+     * The file name to store equipment information.
+     */
+    public static final String EQUIPMENT_FILE_NAME = "equipment.txt";
 }

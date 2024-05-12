@@ -1,11 +1,14 @@
 package ui;
 
 import business_layer.validate.Validate;
+import ui.menu.EquipmentMenu;
 import ui.menu.MemberMenu;
 
 public class Program {
     public static void main(String[] args) {
         MemberMenu memberMenu = new MemberMenu();
+        EquipmentMenu equipmentMenu = new EquipmentMenu();
+        // GymClassMenu gymClassMenu = new GymClassMenu();
         while (true) {
             System.out.println("========================Gym Management========================");
             System.out.println("1. Manage members.");
@@ -15,6 +18,12 @@ public class Program {
             switch (option) {
                 case 1:
                     memberMenu.processMenu();
+                    break;
+                case 2:
+                    equipmentMenu.processMenu();
+                    break;
+                case 3:
+
                     break;
                 default:
                     System.exit(0);
