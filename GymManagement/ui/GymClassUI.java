@@ -198,6 +198,43 @@ public class GymClassUI {
         if (schedule != null || !schedule.isEmpty()) {
             gymClass.setSchedule(schedule);
         }
+        // update gym class
+        try {
+            new GymClassDAO().updateGymClass(gymClass);
+            System.out.println("Gym class updated successfully !!");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void delete() {
+        // get list of gym classes
+        List<GymClass> gymClassList = new GymClassDAO().getGymClassList();
+        // check list empty
+        if (gymClassList.isEmpty()) {
+            System.out.println("No gym class to delete");
+            return;
+        }
+        // display format
+        System.out.format("%-15s %-15s %-15s %-15s\n", "Class ID", "Name", "Schedule", "Capacity");
+        // print list of gym classes
+        gymClassList.forEach(System.out::println);
+        // input class ID to delete
+        String classId = Validate.getString("Enter class ID to delete: ", "Wrong", Constant.CLASS_ID);
+        // get gym class by class ID
+        GymClass gymClass = gymClassList.stream().filter(g -> g.getClassId().equals(classId)).findFirst().orElse(null);
+        // check gym class exist
+        if (gymClass == null) {
+            System.out.println("Gym class ID " + classId + " does not exist");
+            return;
+        }
+        // delete gym class
+        try {
+            new GymClassDAO().deleteGymClass(gymClass);
+            System.out.println("Gym class deleted successfully !!");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 

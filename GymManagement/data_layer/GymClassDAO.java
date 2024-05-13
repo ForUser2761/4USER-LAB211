@@ -3,13 +3,8 @@ package data_layer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +92,15 @@ public class GymClassDAO {
     public List<GymClass> getGymClassList() {
         loadDataFromFile();
         return gymClassList;
+    }
+
+    public void updateGymClass(GymClass gymClass) {
+        writeToFile();
+    }
+
+    public void deleteGymClass(GymClass gymClass) {
+        gymClassList.remove(gymClass);
+        writeToFile();
     }
 
 }
