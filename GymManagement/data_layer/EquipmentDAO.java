@@ -23,7 +23,7 @@ public class EquipmentDAO {
     public void addEquipment(Equipment equipment) {
         //check equipment id exists
         Equipment equipmentById = getEquipmentById(equipment.getEquipmentId());
-        if (equipmentById == null) {
+        if (equipmentById != null) {
             throw new IllegalArgumentException("Equipment id already exists");
         }
 
@@ -39,7 +39,7 @@ public class EquipmentDAO {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try {
-            fileWriter = new FileWriter(Constant.EQUIPMENT_FILE_NAME, false);
+            fileWriter = new FileWriter(Constant.EQUIPMENT_FILE_NAME);
             bufferedWriter = new BufferedWriter(fileWriter);
             for (Equipment equipment : equipmentList) {
                 bufferedWriter.write(equipment.StringToFile());                    

@@ -39,4 +39,11 @@ public class Constant {
      * The file name to store equipment information.
      */
     public static final String EQUIPMENT_FILE_NAME = "equipment.txt";
+
+    /**
+     * Regex for validating a class ID. The class ID must be format Cxxxxxx where x is a digit.
+     */
+    public static final String CLASS_ID = "(C\\d{1,6}|\\s*)";
+
+    public static final String GYM_CLASS_FILE_NAME = "gym_classes.txt";
 }

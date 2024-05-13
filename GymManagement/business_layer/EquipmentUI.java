@@ -2,6 +2,7 @@ package business_layer;
 
 import business_layer.validate.Validate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import business_layer.entity.Equipment;
@@ -47,7 +48,7 @@ public class EquipmentUI {
             return;
         }
         //clone equipment list
-        List<Equipment> cloneList = List.copyOf(equipmentList);
+        List<Equipment> cloneList = new ArrayList<>(equipmentList);
         //sort list of equipment by name
         cloneList.sort((e1, e2) -> e1.getName().compareTo(e2.getName()));
         //display format

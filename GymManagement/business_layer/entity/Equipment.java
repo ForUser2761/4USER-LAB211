@@ -7,6 +7,9 @@ public class Equipment {
     private int quantity;
     private int condition;  // Example: "New", "Good", "Worn", "Damaged"
 
+    public Equipment() {
+    }
+    
     // Constructor to initialize Equipment objects
     public Equipment(String equipmentId, String name, int type, int quantity, int condition) {
         this.equipmentId = equipmentId;

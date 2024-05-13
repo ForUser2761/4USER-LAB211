@@ -30,8 +30,12 @@ public class EquipmentMenu {
     }
 
     private void showMenu() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showMenu'");
+        System.out.println("========================Manage equipments========================");
+        System.out.println("1. Add an equipment.");
+        System.out.println("2. Sort and print the list of equipments ascending by name.");
+        System.out.println("3. View and update existing equipment information.");
+        System.out.println("4. Delete an equipment.");
+        System.out.println("5. Back to main menu.");
     }
 
     

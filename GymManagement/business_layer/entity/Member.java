@@ -7,7 +7,10 @@ public class Member {
     private String address;
     private String email;
     private String phoneNumber;
-    private int membershipType;  // Loại hội viên, ví dụ: "Standard", "Premium", v.v.
+    private int membershipType; // Loại hội viên, ví dụ: "Standard", "Premium", v.v.
+
+    public Member() {
+    }
 
     // Constructor để khởi tạo đối tượng Member mới
     public Member(String id, String name, String address, String email, String phoneNumber, int membershipType) {
@@ -84,7 +87,8 @@ public class Member {
     // Phương thức để hiển thị thông tin của Member
     @Override
     public String toString() {
-        return String.format("%-15s %-15s %-15s %-15s %-15s %-15s ", id, name, address, email, phoneNumber, getMemberShipString());
+        return String.format("%-15s %-15s %-15s %-15s %-15s %-15s ", id, name, address, email, phoneNumber,
+                getMemberShipString());
     }
 
     public String StringToFile() {
@@ -92,4 +96,3 @@ public class Member {
 
     }
 }
-
