@@ -1,6 +1,5 @@
 package model;
 
-
 public class Event {
     private static int autoIncrement = 1; // Mã sự kiện tăng dần
     private int eventID; // Mã sự kiện
@@ -11,7 +10,7 @@ public class Event {
     private int status; // Trạng thái (0: Not Available, 1: Available)
 
     // Constructor
-    public Event( String eventName, String date, String location, int numberOfAttendees, int status) {
+    public Event(String eventName, String date, String location, int numberOfAttendees, int status) {
         this.eventID = autoIncrement++;
         this.eventName = eventName;
         this.date = date;
@@ -81,6 +80,8 @@ public class Event {
     public void setStatus(int status) {
         switch (status) {
             case 0:
+                this.status = status;
+                break;
             case 1:
                 this.status = status;
                 break;
@@ -95,7 +96,8 @@ public class Event {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-15s %-15s %-15s %-15s %-15s", eventID, eventName, date, location, numberOfAttendees, getstat());
+        return String.format("%-10s %-15s %-15s %-15s %-15s %-15s", eventID, eventName, date, location,
+                numberOfAttendees, getstat());
     }
 
     public String StringToFile() {
@@ -110,4 +112,3 @@ public class Event {
         Event.autoIncrement = autoIncrement;
     }
 }
-

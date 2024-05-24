@@ -118,14 +118,13 @@ public class EventController {
         //name, date, location, number of attendees, status
         String name = Validate.getString("Enter event name: ",
                 "e event name is at least five characters long and does not contain spaces",
-                "[a-zA-Z0-9]{5,}");
-        String date = Validate.getDate("Enter event date (yyyy-MM-dd): ", "Invalid date format");
+                "([a-zA-Z0-9]{5,}|\\s+)");
+        String date = Validate.getDate("Enter event date (yyyy-MM-dd): ", "Invalid date format", "((\\d{4}-\\d{2}-\\d{2})|\\s+)");
         String location = Validate.getString("Enter event location: ", "Location must be string",
-                ".+");
-        int numberOfAttendees = Validate.getInteger("Enter number of attendees: ",
-                "Number of attendees must be greater than 0", 1, Integer.MAX_VALUE);
-        int status = Validate.getInteger("Enter status (0: Not Available, 1: Available): ", "Status must be 0 or 1", 0,
-                1);
+                "(.+|\\s+)");
+        String numberOfAttendees = Validate.getString("Enter number of attendees: ",
+                "Number of attendees must be greater than 0", "(\\d+|\\s+)");
+        String status = Validate.getString("Enter status (0: Not Available, 1: Available): ", "Status must be 0 or 1", "(0|1|\\s+)");
         //update event
         if (name != null || !name.isEmpty()) {
             event.setEventName(name);
@@ -136,11 +135,11 @@ public class EventController {
         if (location != null || !location.isEmpty()) {
             event.setLocation(location);
         }
-        if (numberOfAttendees != 0) {
-            event.setNumberOfAttendees(numberOfAttendees);
+        if (numberOfAttendees != null || !numberOfAttendees.isEmpty()) {
+            event.setNumberOfAttendees(Integer.parseInt(numberOfAttendees));
         }
-        if (status != 0) {
-            event.setStatus(status);
+        if (status != null || !status.isEmpty()) {
+            event.setStatus(Integer.parseInt(status));
         }
         //update event to database
         try {

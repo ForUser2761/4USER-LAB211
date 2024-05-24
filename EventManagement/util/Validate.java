@@ -148,4 +148,20 @@ public class Validate {
     public static boolean isContinue() {
         return getBoolean("Do you want to continue (Y/N)? ", "Please input Y/y or N/n");
     }
+
+    public static String getDate(String message, String error, String regex) {
+        while (true) {
+            // check format yyyy-MM-dd
+            String input = getString(message, error, regex);
+            // check date input exist by simpledate format
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setLenient(false);
+            try {
+                sdf.parse(input);
+                return input;
+            } catch (Exception e) {
+                System.err.println(error);
+            }
+        }
+    }
 }
