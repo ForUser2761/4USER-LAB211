@@ -12,6 +12,7 @@ public class EventController {
      * Input event
      */
     public void inputEvent() {
+        eventDAO.loadDataFromFile();
         // input event
         // input name, date, location, number of attendees, status
         String name = Validate.getString("Enter event name: ",

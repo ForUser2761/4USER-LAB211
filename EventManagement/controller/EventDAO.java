@@ -55,7 +55,7 @@ public class EventDAO {
     /**
      * Load data from file
      */
-    private void loadDataFromFile() {
+    public void loadDataFromFile() {
         eventList.clear();
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
@@ -74,7 +74,7 @@ public class EventDAO {
                 int status = Integer.parseInt(data[5].trim());
                 Event event = new Event(id, name, date, location, numberOfAttendees, status);
                 eventList.add(event);
-                Event.setAutoIncrement(id);
+                Event.setAutoIncrement(++id);
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
