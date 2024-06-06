@@ -88,9 +88,56 @@ public class BookController implements ControllerInterface<Book> {
         }
     }
 
-    public void addBook() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addBook'");
+    public void update() {
+        while (true) {
+            System.out.println("===================== Update Book Information =====================");
+            String bookId = Validate.getString("Enter Book ID: ", "Book ID cannot be empty", CommonRegex.STRING_REGEX);
+            Book book = bookDao.getBookByID(bookId);
+            if (book == null) {
+                System.out.println("Book not found.");
+                if (!Validate.getBoolean("Do you want to try again? (true/false)", "Input must be true or false")) {
+                    break;
+                }
+                continue;
+            }
+            System.out.println("Current Book Information:");
+            System.out.println(book);
+            String title = Validate.getString("Enter new book title (leave blank to keep existing): ",
+                    "Invalid title. Please try again.", CommonRegex.BOOK_TITLE_REGEX);
+            if (!title.isEmpty()) {
+                book.setTitle(title);
+            }
+            String author = Validate.getString("Enter new book author (leave blank to keep existing): ",
+                    "Invalid author name. Please try again.", CommonRegex.BOOK_AUTHOR_REGEX);
+            if (!author.isEmpty()) {
+                book.setAuthor(author);
+            }
+            int publicationYear = Validate.getInteger("Enter new publication year (leave blank to keep existing): ",
+                    "Invalid publication year. Please enter a positive integer.", 1900, 2100);
+            if (publicationYear != 0) {
+                book.setPublicationYear(publicationYear);
+            }
+            String publisher = Validate.getString("Enter new publisher (leave blank to keep existing): ",
+                    "Invalid publisher. Please try again.", CommonRegex.STRING_REGEX);
+            if (!publisher.isEmpty()) {
+                book.setPublisher(publisher);
+            }
+            String isbn = Validate.getString("Enter new ISBN (leave blank to keep existing): ",
+                    "Invalid ISBN. Please try again.", CommonRegex.STRING_REGEX);
+            if (!isbn.isEmpty()) {
+                book.setIsbn(isbn);
+            }
+            try {
+                bookDao.updateBook(book);
+                System.out.println("Book information updated successfully.");
+            } catch (Exception ex) {
+                System.out.println("Error updating book information: " + ex.getMessage());
+            }
+            if (!Validate.getBoolean("Do you want to update another book? (true/false)",
+                    "Input must be true or false")) {
+                break;
+            }
+        }
     }
 
 }

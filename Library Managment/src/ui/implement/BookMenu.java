@@ -49,6 +49,7 @@ public class BookMenu implements IMenu {
                     bookController.input();
                     break;
                 case 2:
+                    bookController.update();
                     break;
                 case 3:
                     bookController.delete();

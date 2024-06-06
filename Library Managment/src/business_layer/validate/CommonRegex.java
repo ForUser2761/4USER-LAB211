@@ -2,7 +2,7 @@ package business_layer.validate;
 
 public class CommonRegex {
     // Regex for any string
-    public static final String STRING_REGEX = ".+";
+    public static final String STRING_REGEX = ".+|\\s+";
 
     // Regex for validating y or n
     public static final String YES_NO_REGEX = "[yYnN]";

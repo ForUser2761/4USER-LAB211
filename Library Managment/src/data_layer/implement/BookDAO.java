@@ -132,4 +132,19 @@ public class BookDAO implements IGenericDAO<Book> {
         return listBook;
     }
 
+    public void updateBook(Book book) throws Exception {
+        boolean found = false;
+        for (int i = 0; i < listBook.size(); i++) {
+            if (listBook.get(i).getBookId().equals(book.getBookId())) {
+                listBook.set(i, book);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new Exception("Book not found.");
+        }
+        writeToFile();
+    }
+
 }
