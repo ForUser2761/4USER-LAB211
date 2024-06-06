@@ -47,8 +47,16 @@ public class BookController implements ControllerInterface<Book> {
 
     @Override
     public void showAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showAll'");
+        try {
+            System.out.println("===================== All Books =====================");
+            System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s", "Book ID", "Title", "Author",
+                    "Publication Year", "Publisher", "ISBN", "Status"));
+            for (Book book : bookDao.getListBook()) {
+                System.out.println(book);
+            }
+        } catch (Exception e) {
+            System.out.println("Error displaying all books: " + e.getMessage());
+        }
     }
 
     @Override

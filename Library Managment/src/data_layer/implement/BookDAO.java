@@ -120,4 +120,16 @@ public class BookDAO implements IGenericDAO<Book> {
         }
         writeToFile();
     }
+
+    public List<Book> getListBook() {
+        clear();
+        try {
+            loadDataFromFile();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return listBook;
+    }
+
 }
