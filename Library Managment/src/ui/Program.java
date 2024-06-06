@@ -2,10 +2,12 @@ package ui;
 
 import business_layer.validate.Validate;
 import ui.implement.BookMenu;
+import ui.implement.UserMenu;
 
 public class Program {
     public static void main(String[] args) {
         BookMenu bookMenu = new BookMenu();
+        UserMenu userMenu = new UserMenu();
         while (true) {
             System.out.println("======================== Library Management ========================");
             System.out.println("1. Manage Books.");
@@ -20,6 +22,7 @@ public class Program {
                     bookMenu.run();
                     break;
                 case 2:
+                    userMenu.run();
                     break;
                 case 3:
                     break;
