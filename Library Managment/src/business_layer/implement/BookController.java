@@ -1,5 +1,7 @@
 package business_layer.implement;
 
+import java.util.List;
+
 import business_layer.ControllerInterface;
 import business_layer.entity.Book;
 import business_layer.validate.CommonRegex;
@@ -138,6 +140,10 @@ public class BookController implements ControllerInterface<Book> {
                 break;
             }
         }
+    }
+
+    public List<Book> getListBook() {
+        return bookDao.getListBook();
     }
 
 }

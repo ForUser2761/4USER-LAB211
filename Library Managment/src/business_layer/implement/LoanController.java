@@ -2,6 +2,8 @@ package business_layer.implement;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import business_layer.ControllerInterface;
 import business_layer.entity.Book;
 import business_layer.entity.Loan;
@@ -161,5 +163,9 @@ public class LoanController implements ControllerInterface<Loan> {
                 break;
             }
         }
+    }
+
+    public List<Loan> getListLoan() {
+        return loanDao.getListLoan();
     }
 }
