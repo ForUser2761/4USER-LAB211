@@ -60,7 +60,22 @@ public class ProductDAO implements I_File {
             File file = new File(fileName);
             writer = new BufferedWriter(new FileWriter(file));
             for (Product product : products) {
-                writer.write(product.toString());
+                StringBuilder sb = new StringBuilder();
+                sb.append(product.getId()).append("|");
+                sb.append(product.getName()).append("|");
+                sb.append(product.getBrandId()).append("|");
+                sb.append(product.getCategoryId()).append("|");
+                sb.append(product.getModelYear()).append("|");
+                sb.append("[");
+                List<Double> listPrice = product.getListPrice();
+                for (int i = 0; i < listPrice.size(); i++) {
+                    sb.append(listPrice.get(i));
+                    if (i < listPrice.size() - 1) {
+                        sb.append(", ");
+                    }
+                }
+                sb.append("]");
+                writer.write(sb.toString());
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -77,6 +92,14 @@ public class ProductDAO implements I_File {
     }
 
     public List<Product> getProducts() {
+        readFromFile(I_File.PRODUCT_FILE_NAME);
         return products;
+    }
+
+    public static void main(String[] args) {
+        ProductDAO productDAO = new ProductDAO();
+        for (Product product : productDAO.getProducts()) {
+            System.out.println(product);
+        }
     }
 }

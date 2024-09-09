@@ -33,7 +33,7 @@ public class ProductManagement{
                     // productController.saveProductsToFile();
                     break;
                 case 6:
-                    // productController.printProductsFromFile();
+                    productController.output();
                     break;
                 case 7:
                     cont = menu.confirmYesNo("Do you want to quit? (Y/N)");

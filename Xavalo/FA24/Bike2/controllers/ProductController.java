@@ -101,8 +101,15 @@ public class ProductController implements I_List {
 
     @Override
     public void output() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'output'");
+        //check list product empty
+        if (productDAO.getProducts().isEmpty()) {
+            System.out.println("No product found.");
+            return;
+        }
+        //display format
+        System.out.println(String.format("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s", "ID", "Name", "Brand ID", "Category ID", "Model Year", "List Price"));
+        //display product
+        productDAO.getProducts().forEach(System.out::println);
     }
 
 }

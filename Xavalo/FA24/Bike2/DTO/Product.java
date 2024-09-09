@@ -26,7 +26,7 @@ public class Product {
         this.listPrice = listPrice;
     }
 
-    public Product(String id , String name, String brandId, String categoryId, int modelYear, List<Double> listPrice) {
+    public Product(String id, String name, String brandId, String categoryId, int modelYear, List<Double> listPrice) {
         this.id = id;
         this.name = name;
         this.brandId = brandId;
@@ -83,15 +83,17 @@ public class Product {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-15s %-15s %-15s %-15s %-15s ", id, name, brandId, categoryId, modelYear));
-        sb.append("List Price: [");
+        sb.append(String.format("%-15s| ", id));
+        sb.append(String.format(" %-15s| ", name));
+        sb.append(String.format(" %-15s| ", brandId));
+        sb.append(String.format(" %-15s| ", categoryId));
+        sb.append(String.format(" %-15s| ", modelYear));
         for (int i = 0; i < listPrice.size(); i++) {
-            sb.append(listPrice.get(i));
+            sb.append(String.format("%s", listPrice.get(i)));
             if (i < listPrice.size() - 1) {
                 sb.append(", ");
             }
         }
-        sb.append("]");
         return sb.toString();
     }
 }

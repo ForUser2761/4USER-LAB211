@@ -48,12 +48,4 @@ public class BrandDAO implements I_File {
         readFromFile(I_File.BRAND_FILE_NAME);
         return brands;
     }
-
-    public static void main(String[] args) {
-        BrandDAO brandDAO = new BrandDAO();
-        List<Brand> brands = brandDAO.getBrands();
-        for (Brand brand : brands) {
-            System.out.println(brand);
-        }
-    }
 }
