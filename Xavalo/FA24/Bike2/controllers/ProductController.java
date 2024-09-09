@@ -101,15 +101,44 @@ public class ProductController implements I_List {
 
     @Override
     public void output() {
-        //check list product empty
+        // check list product empty
         if (productDAO.getProducts().isEmpty()) {
             System.out.println("No product found.");
             return;
         }
-        //display format
-        System.out.println(String.format("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s", "ID", "Name", "Brand ID", "Category ID", "Model Year", "List Price"));
-        //display product
+        // display format
+        System.out.println(String.format("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s", "ID", "Name", "Brand ID",
+                "Category ID", "Model Year", "List Price"));
+        // display product
         productDAO.getProducts().forEach(System.out::println);
+    }
+
+    public void searchProductByName() {
+        String searchString = Validate.getString("Enter a search string (a part of product name): ",
+                "Search string cannot be empty.", "^(?!\\s*$).+");
+
+        List<Product> searchResults = new ArrayList<>();
+        for (Product product : productDAO.getProducts()) {
+            if (product.getName().toLowerCase().contains(searchString.toLowerCase())) {
+                searchResults.add(product);
+            }
+        }
+
+        if (searchResults.isEmpty()) {
+            System.out.println("Have no any Product");
+        } else {
+            System.out.println(String.format("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s", "ID", "Name", "Brand ID",
+                    "Category ID", "Model Year", "List Price"));
+            searchResults.stream()
+                    .sorted((p1, p2) -> Integer.compare(p1.getModelYear(), p2.getModelYear()))
+                    .forEach(System.out::println);
+        }
+
+        if (Validate.getBoolean("Do you want to return to the main menu? (y/n): ", "Please enter y or n.")) {
+            return;
+        } else {
+            searchProductByName();
+        }
     }
 
 }

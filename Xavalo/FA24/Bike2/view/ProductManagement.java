@@ -21,7 +21,7 @@ public class ProductManagement{
                     productController.add();
                     break;
                 case 2:
-                    // productController.searchProductByName();
+                    productController.searchProductByName();
                     break;
                 case 3:
                     // productController.updateProduct();
