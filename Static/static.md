@@ -1,36 +1,35 @@
-# Static
-Trong java, từ khóa static được sử để:
-+ quản lý bộ nhớ tốt hơn
-+ sử dụng để truy cập trực tiếp thông qua 1 lớp mà không cần khởi tạo
-
-Từ khóa static thuộc về class chứ không thuộc về instance ( thế hiện) của class
-
-Từ khóa static áp dụng cho:
-+ Variable
-+ Method
-+ Block
-+ Nested class
-
-Chỉ những thằng static mới chơi với nhau
-
-=> Neus 1 biến hay 1 phương thức là static thì biến đó hoặc phương thức đó sẽ được khởi tạo ngay khi chương trình chạy và tồn tại cho đến khi chương trình kết thúc
-Garbage collector
-
-## Biến static
-+ Việc cấp phát bộ nhớ cho biến static chỉ xảy ra 1 lần khi mà class được nạp vào bộ nhớ
-+ Biến static có thể được sử dụng làm các thuộc tính chng, để dùng chung dữ liệu cho tất cả các object ( instances) của lớp đó và điều đó giúp cho chương trình tiết kiệm bộ nhớ hơn
-+ Nếu 1 biến được khai báo với từ khóa static thì chúng ta có thể truy cập trực tiếp thông qua lớp
-
+1. Tách nội dung thành các dòng:
 
 ```java
-public class Test {
-    
-    static int a = 5;
-
-    public static void main(String[] args) {
-        System.out.println(a);
-    }
-}
-
+String[] lines = content.split("\\r?\\n");
 ```
 
+Dùng biểu thức chính quy \\r?\\n để chia nội dung thành các dòng. Điều này hoạt động cho cả dấu xuống dòng Windows (\r\n) và Unix (\n).
+
+2. Duy trì các dòng trống:
+
+```java
+if (line.trim().isEmpty()) {
+    // Preserve empty lines
+    normalizedContent.append("\n");
+} else {
+    // Normalize non-empty lines
+    // (normalization code)
+    normalizedContent.append(normalizedLine.toString().trim()).append("\n");
+}
+```
+- Nếu dòng hiện tại là dòng trống (sau khi loại bỏ khoảng trắng ở hai đầu), giữ lại dòng trống trong kết quả.
+
+3. Chuẩn hóa các dòng không trống:
+
+Các dòng không trống được xử lý như trước đây: loại bỏ khoảng trắng dư thừa, chuẩn hóa dấu câu, viết hoa chữ cái đầu mỗi câu và đảm bảo dấu chấm ở cuối câu.
+
+4. Đảm bảo dấu chấm ở cuối văn bản:
+
+```java
+String result = normalizedContent.toString().trim();
+if (!result.endsWith(".")) {
+    result += ".";
+}
+```
+Loại bỏ khoảng trắng cuối cùng của chuỗi và kiểm tra xem văn bản có kết thúc bằng dấu chấm không. Nếu không, thêm dấu chấm.

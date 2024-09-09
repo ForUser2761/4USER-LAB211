@@ -1,0 +1,10 @@
+C001|Road Bikes
+C002|Mountain Bikes
+C003|Hybrid Bikes
+C004|Electric Bikes
+C005|Folding Bikes
+C006|Kids Bikes
+C007|BMX Bikes
+C008|Cyclocross Bikes
+C009|Touring Bikes
+C010|Gravel Bikes
