@@ -13,6 +13,10 @@ public class BrandDAO implements I_File {
 
     public static List<Brand> brands = new ArrayList<>();
 
+    public BrandDAO() {
+        readFromFile(I_File.BRAND_FILE_NAME);
+    }
+
     @Override
     public void readFromFile(String fileName) {
         brands.clear(); // Clear the brands list before reading from file
@@ -45,7 +49,6 @@ public class BrandDAO implements I_File {
     }
 
     public List<Brand> getBrands() {
-        readFromFile(I_File.BRAND_FILE_NAME);
         return brands;
     }
 }

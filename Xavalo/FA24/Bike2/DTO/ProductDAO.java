@@ -13,6 +13,10 @@ public class ProductDAO implements I_File {
 
     public static List<Product> products = new ArrayList<Product>();
 
+    public ProductDAO() {
+        readFromFile(I_File.PRODUCT_FILE_NAME);
+    }
+
     @Override
     public void readFromFile(String fileName) {
         products.clear();
@@ -92,7 +96,6 @@ public class ProductDAO implements I_File {
     }
 
     public List<Product> getProducts() {
-        readFromFile(I_File.PRODUCT_FILE_NAME);
         return products;
     }
 

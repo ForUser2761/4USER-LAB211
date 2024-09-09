@@ -79,4 +79,49 @@ public class Validate {
         String input = getString(message, error, "[ynYN]");
         return input.equalsIgnoreCase("y");
     }
+
+    public static int getInteger(String message, String error, int min, int max, int defaultValue) {
+        while (true) {
+            try {
+                System.out.print(message);
+                String input = scanner.nextLine().trim();
+
+                if (input.isEmpty()) {
+                    return defaultValue;
+                }
+
+                int number = Integer.parseInt(input);
+                if (number >= min && number <= max) {
+                    return number;
+                } else {
+                    System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
+                }
+            } catch (NumberFormatException e) {
+                System.err.println(error);
+            }
+        }
+    }
+
+    public static double getDouble(String message, String error, double min, double max, double defaultValue) {
+        while (true) {
+            try {
+                System.out.print(message);
+                String input = scanner.nextLine().trim();
+
+                if (input.isEmpty()) {
+                    return defaultValue;
+                }
+
+                double number = Double.parseDouble(input);
+                if (number >= min && number <= max) {
+                    return number;
+                } else {
+                    System.err.println("Bạn phải nhập trong khoảng " + min + "-" + max);
+                }
+            } catch (NumberFormatException e) {
+                System.err.println(error);
+            }
+        }
+    }
+
 }

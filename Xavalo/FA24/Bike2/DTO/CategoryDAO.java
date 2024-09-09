@@ -12,6 +12,10 @@ import java.util.List;
 public class CategoryDAO implements I_File {
     public static final List<Category> categories = new ArrayList<>();
 
+    public CategoryDAO() {
+        readFromFile(I_File.CATEGORY_FILE_NAME);
+    }
+
     @Override
     public void readFromFile(String fileName) {
         categories.clear(); // Clear the categories list before reading from file
@@ -44,7 +48,6 @@ public class CategoryDAO implements I_File {
     }
 
     public List<Category> getCategories() {
-        readFromFile(I_File.CATEGORY_FILE_NAME);
         return categories;
     }
 }
